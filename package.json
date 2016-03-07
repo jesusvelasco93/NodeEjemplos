@@ -2,7 +2,7 @@
   "name": "nodeejemplos",
   "version": "1.0.0",
   "description": "Ejemplos de node",
-  "main": "index.js",
+  "main": "bucle_asincrono.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
