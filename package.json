@@ -1,0 +1,19 @@
+{
+  "name": "nodeejemplos",
+  "version": "1.0.0",
+  "description": "Ejemplos de node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusvelasco93/NodeEjemplos.git"
+  },
+  "author": "Jesus Velasco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesusvelasco93/NodeEjemplos/issues"
+  },
+  "homepage": "https://github.com/jesusvelasco93/NodeEjemplos#readme"
+}
