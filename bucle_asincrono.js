@@ -5,22 +5,21 @@ console.log("Empiezo");
 
 //Declaro la funcion
 var escribeTras2Segundos = function(texto, callback) {
-    setTimeout(function(){
+    setTimeout(function() {
         console.log(texto);
         callback();
-    }, 2000);
+    }, 500);
 };
 
-function serie(i, fn){
+function serie(arr, fn) {
 
-    fn("texto" + i, function(){
-        i--;
-        if (i == 0) {
-            console.log("Finalizo");
-            return;
-        } 
-        serie(i, fn);
+    if (arr.length == 0) {
+        console.log("Finalizo");
+        return;
+    }
+    fn("texto" + arr.shift(), function() {
+        serie(arr, fn);
     });
 }
 
-serie(5, escribeTras2Segundos);
+serie([1, 2, 3, 4, 5], escribeTras2Segundos);
