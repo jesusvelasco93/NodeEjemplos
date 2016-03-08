@@ -46,3 +46,21 @@ console.log(smith instanceof Agente);
 console.log(smith instanceof Persona);
 console.log(smith instanceof Object);
 console.log(luis instanceof Agente);
+
+
+
+var EventEmitter = require("events").EventEmitter;
+var extend = require("util")._extend;
+Persona.prototype = extend(Persona.prototype, EventEmitter.prototype);
+
+var jose = new Persona("jose");
+
+jose.on("asdas", function(data){
+    console.log("ha saltado el evento", data);
+});
+
+jose.emit("asdas", { payload: 55000});
+
+process.on("exit", function() {
+    jose.emit("asdas", "el programa termina");
+});
