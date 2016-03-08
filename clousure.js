@@ -6,10 +6,10 @@ var creaAgente = function(_edad) {
         dimeEdad: function(){
             console.log("Yo tengo " + edad);
             return edad;
+        },
+        ponEdad: function(_edad){
+            edad = _edad;
         }
-        // ponEdad: function(){
-            
-        // }
     }
 };
 
@@ -19,6 +19,8 @@ var agente = creaAgente(30);
 var smith = creaAgente(22);
 
 console.log(agente.dimeEdad(), smith.dimeEdad());
+
+smith.ponEdad("9");
 
 setTimeout(agente.dimeEdad, 1000);
 setTimeout(smith.dimeEdad, 1000);
