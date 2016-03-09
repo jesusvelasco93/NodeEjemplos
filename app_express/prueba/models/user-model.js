@@ -5,4 +5,10 @@ var users = [
     { name: "Juan", age: "20" }
 ];
 
-module.exports = users;
+var user = {
+    getUsers: function(){
+        return users;
+    }
+};
+
+module.exports = user;

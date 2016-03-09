@@ -1,46 +1,47 @@
-"use strict"
+'use strict';
 
-var fs = require('fs');
 var async = require('async');
 
-function versionModulo(url, callback){
-    fs.readFile(url, {encoding: 'utf8'}, function(err, data) {
-         if (err) {
-             //Return solo para la ejecucion, no retorna console.log
-             callback(err);
-         }
-         else{
-         //Convertimos en String el JSON
-            var fichero = JSON.parse(data);
-            callback(null, fichero.version);
-        }
+//Esta funcion obtiene la version dado un nombre
+function versionModulo(nombre, callback) {
+    console.log(nombre);
+    var path = "node_modules/" + nombre + "/package.json";
+    var fs = require('fs');
+    //El segundo parametro son las opciones
+    fs.readFile(path, { encoding: 'utf8' }, function(err, data) {
+        if (err)
+            return callback(err);
 
-      });
- };
+        var paquete = JSON.parse(data);
+        callback(err, paquete.version);
+    });
+}
+
+var fs = require('fs'),
+    path = require('path');
 
 
-function versionModulos(callback) {
-    fs.readdir("./", function(err, files) {
-        if (err) {
-            console.error("Hubo un error: ", err);
-        }
-        console.log(files);
-        console.log(files[0]);
-        // async.concat(files, verQueEs, function(err, dir){
-        // if (err) {
-        //   callback(err);
-        // }
+//Funcion que nos devuelve todos los directorios de un path
+function getDirectories(srcpath) {
+  return fs.readdirSync(srcpath).filter(function(file) {
+    return fs.statSync(path.join(srcpath, file)).isDirectory();
+  });
+}
 
-        //     callback(null, result);
-
-    // files is now a list of filenames that exist in the 3 directories
-});
-        // async.concat(files, console.log("Fichero"), function(err, result) {
-};
-
-versionModulos(function(err, moduleArr) {
-    if (err) {
-        console.error("Hubo un error: ", err);
+//Usamos eachSeries para llamar recursivamente a versionModulo
+//Con un array
+async.eachSeries(getDirectories("node_modules/"),
+    function(item, next) {
+        versionModulo(item, function(err, str) {
+            if (err) {
+                console.error('Hubo un error: ', err);
+            } else {
+                console.log('La version del módulo es:', str);
+            }
+            next();
+        })
+    },
+    function(){
+        console.log('Fin eachSeries');
     }
-    console.log("Los módulos son: ", moduleArr);
-});
+);

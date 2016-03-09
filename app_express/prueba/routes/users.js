@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var users = require("../models/user-model");
-
-console.log("users", users);
+var user = require("../models/user-model");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -10,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/form', function(req, res, next) {
-  res.render('user_form', { users: users});
+  res.render('user_form', { users: user.getUsers()});
 });
 
 module.exports = router;
