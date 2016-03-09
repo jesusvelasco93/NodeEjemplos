@@ -7,8 +7,15 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+// Get user listing
 router.get('/form', function(req, res, next) {
-  res.render('user_form', { users: user.getUsers()});
+
+    // Pido los datos al modelo
+    user.getUsers(function (err, users){
+
+        // Cuando esten disponibles los mando a la vista
+        res.render('user_form', { users: users});
+    });
 });
 
 module.exports = router;

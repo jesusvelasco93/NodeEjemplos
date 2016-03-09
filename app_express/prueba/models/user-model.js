@@ -8,8 +8,12 @@ var users = [
 
 // Metodos del modelo
 var user = {
-    getUsers: function(){
-        return users;
+    getUsers: function(callback){
+        // Imaginamos que lee un fichero
+        var usariosLeidos = users;
+
+        // Devuelvo users
+        callback(null, users);
     }
 };
 
