@@ -13,13 +13,12 @@ var userSchema = mongoose.Schema({
     age: Number
 });
 
-userSchema.statics.list = function(cb){
+userSchema.statics.list = function(sort, cb){
     // Preparamos la Query sin ejecutarla (No ponemos callback a find)
     var query = User.find({});
 
     // Añadimos mas parámetros a la query
-    query.sort("name");
-    
+    query.sort(sort);
     // La ejecutamos
     query.exec(function(err, rows){
         if (err){
@@ -29,8 +28,25 @@ userSchema.statics.list = function(cb){
         cb(null, rows);
     });
 };
+
+
 // Lo registro en mongoose
 var User = mongoose.model("User", userSchema);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------
+// Antiguo eemplo sin usar el modelo
 
 // Metodos del modelo
 var user = {

@@ -5,9 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+// MODELOS
+require("./models/user-model");
+
+// RUTAS DE WEB
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var admin = require('./routes/admin');
+
+// RUTAS DE API V!
+var apiUsers = require('./routes/api/v1/users');
 
 var app = express();
 
@@ -40,9 +47,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// RUTAS DE WEB
 app.use('/', routes);
 app.use('/users', users);
 app.use('/admin', admin);
+
+// RUTAS DE API V!
+app.use('/api/v1/users', apiUsers);
 
 // app.get("/ruta", function(req, res){
 //   res.send("Hola amigosh");
