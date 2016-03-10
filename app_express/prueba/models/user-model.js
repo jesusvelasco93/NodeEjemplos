@@ -1,19 +1,17 @@
 "use strict";
 
-// Datos
-var users = [
-    { name: "Smith", age: "30" },
-    { name: "Juan", age: "20" }
-];
+var basedatos = require('../lib/connectMongo');
 
 // Metodos del modelo
 var user = {
     getUsers: function(callback){
-        // Imaginamos que lee un fichero
-        var usariosLeidos = users;
-
-        // Devuelvo users
-        callback(null, users);
+        basedatos.db.collection('agentes').find({}).toArray(function(err, usuariosLeidos) {
+            if (err) {
+                return callback(error);
+            }
+            // devuelve users
+            callback(null, usuariosLeidos);
+        });
     }
 };
 

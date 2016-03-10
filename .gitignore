@@ -1,2 +1,11 @@
 # Node modules
 node_modules/
+
+app_express/node_modules
+
+# Base de datos
+BaseDatos/data/db/*.wt
+BaseDatos/data/db/*.lock
+BaseDatos/data/db/diagnosstic.data
+BaseDatos/data/db/journal
+BaseDatos/data/db/local
