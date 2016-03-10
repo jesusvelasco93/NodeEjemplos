@@ -1,6 +1,9 @@
+"use strict"
+
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user-model");
+var mongoose = require("mongoose");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -10,12 +13,19 @@ router.get('/', function(req, res, next) {
 // Get user listing
 router.get('/form', function(req, res, next) {
 
+    var User = mongoose.model("User");
+
+    User.list(function(err, rows){
+
+        // Cuando esten disponibles los mando a la vista
+        res.render('user_form', { users: rows});
+    });
     // Pido los datos al modelo
-    user.getUsers(function (err, users){
+/*    user.getUsers(function (err, users){
 
         // Cuando esten disponibles los mando a la vista
         res.render('user_form', { users: users});
-    });
+    });*/
 });
 
 module.exports = router;
