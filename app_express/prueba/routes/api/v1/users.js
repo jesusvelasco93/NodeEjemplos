@@ -4,6 +4,9 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 var User = mongoose.model("User");
+var auth = require("../../../lib/auth");
+
+router.use(auth("admin", "pass2"));
 
 // Get user listing
 router.get('/', function(req, res) {
