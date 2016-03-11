@@ -35,4 +35,4 @@ conArroz(paella)
     })
     .catch(function(err){
         console.log("Error", err);
-    });
+});
