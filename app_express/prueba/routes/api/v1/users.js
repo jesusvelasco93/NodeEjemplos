@@ -6,10 +6,10 @@ var mongoose = require("mongoose");
 var User = mongoose.model("User");
 var auth = require("../../../lib/auth");
 
-router.use(auth("admin", "pass2"));
+// router.use(auth("admin", "pass2"));
 
 // Get user listing
-router.get('/', function(req, res) {
+router.get('/', auth("admin", "pass2"), function(req, res) {
 
     var sort = req.query.sort || 'name';
 
